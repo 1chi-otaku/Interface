@@ -10,7 +10,11 @@ protected:
 	double kg;
 	string continent;
 public:
-	Animal() = default;
+	Animal() {
+		name = "N/A";
+		kg = 0;
+		continent = "N/A";
+	}
 	Animal(string n, double k, string cont)
 	{
 		name = n;
@@ -23,8 +27,19 @@ public:
 		cout << "KG: " << kg << endl;
 		cout << "Continent: " << continent << endl;
 	}
-	//virtual void Eat() = 0;
-	//virtual void Move() = 0;	
+	virtual void Init() {
+		string str_temp, str_cont;
+		int kg;
+		cout << "Enter name: ";
+		cin >> str_temp;
+		name = str_temp;
+		cout << "Enter kg: ";
+		cin >> kg;
+		this->kg = kg;
+		cout << "Enter continent:";
+		cin >> str_cont;
+		continent = str_cont;
+	}
 };
 
 class Elephant: public Animal // наследование 
@@ -33,7 +48,6 @@ public:
 	Elephant() = default;
 	Elephant(string n, double k, string cont):Animal(n,k,cont){}
 
-	// ----- реализация ИНТЕРФЕЙСА IANIMAL !!!
 
 	virtual void Eat()
 	{
@@ -42,6 +56,13 @@ public:
 	virtual void Move()
 	{
 		cout << "Elephant Move\n";
+	}
+	virtual void Init() {
+		Animal::Init();
+	}
+	virtual void Print() {
+		cout << "Type - Elephant" << endl;
+		Animal::Print();
 	}
 
 };
@@ -66,6 +87,13 @@ public:
 	{
 		cout << "Parrot Fly\n";
 	}
+	virtual void Init() {
+		Animal::Init();
+	}
+	virtual void Print() {
+		cout << "Type - Parrot" << endl;
+		Animal::Print();
+	}
 
 };
 
@@ -87,6 +115,13 @@ public:
 	{
 		cout << "Cat Move\n";
 	}
+	virtual void Init() {
+		Animal::Init();
+	}
+	virtual void Print() {
+		cout << "Type - Cat" << endl;
+		Animal::Print();
+	}
 };
 
 class Dog : public Animal, public IAnimal {
@@ -102,6 +137,13 @@ public:
 	virtual void Move()
 	{
 		cout << "Dog Move\n";
+	}
+	virtual void Init() {
+		Animal::Init();
+	}
+	virtual void Print() {
+		cout << "Type - Dog" << endl;
+		Animal::Print();
 	}
 };
 
@@ -125,6 +167,13 @@ public:
 	{
 		cout << "Pinguin Swim\n";
 	}
+	virtual void Init() {
+		Animal::Init();
+	}
+	virtual void Print() {
+		cout << "Type - Pinguin" << endl;
+		Animal::Print();
+	}
 };
 
 class Dolphin : public Animal, public ISwim {
@@ -144,5 +193,12 @@ public:
 	virtual void Swim()
 	{
 		cout << "Dolphin Swim\n";
+	}
+	virtual void Init() {
+		Animal::Init();
+	}
+	virtual void Print() {
+		cout << "Type - Dolphin" << endl;
+		Animal::Print();
 	}
 };
