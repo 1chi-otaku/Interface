@@ -1,7 +1,7 @@
 #include"Animal.h"
 #include <list>
 #include <iostream>
-typedef unsigned int uint;
+typedef unsigned int uint; 
 using namespace std;
 
 void PrintMenu();
@@ -29,11 +29,7 @@ int main()
 			cout << "Success!" << endl;
 			system("pause");
 			break;
-
-
-
 		case 3:
-			
 			input = 1;
 			for (auto ptr = animals.begin(); ptr != animals.end(); ptr++)
 			{
@@ -43,13 +39,69 @@ int main()
 				input++;
 			}
 			system("pause");
-
-
 			break;
-			5
-
-
-
+		case 4:	{
+			string temp;
+			bool isFound = false;
+			cout << "Enter data to search (name or continent):" << endl;
+			cin >> temp;
+			system("cls");
+			for (auto ptr = animals.begin(); ptr != animals.end(); ptr++)
+			{
+				if ((*ptr)->GetName() == temp || (*ptr)->GetContinent() == temp) {
+					(*ptr)->Print();
+					cout << endl;
+					isFound = true;
+				}
+			}
+			if (!isFound) {
+				cout << "No animals with such data..." << endl;
+			}
+			system("pause");
+			break;
+		}
+		case 5: {
+			int pos;
+			bool isFound = false;
+			cout << "Enter the position to insert the animal:" << endl;
+			cin >> pos;
+			int i = 0;
+			for (auto ptr = animals.begin(); ptr != animals.end(); ptr++)
+			{
+				i++;
+				if (i == pos) {
+					animals.insert(ptr, CreateAnimal());
+					isFound = true;
+				}
+			}
+			if (!isFound) {
+				system("cls");
+				cout << "Something went wrong..." << endl;
+				system("pause");
+			}
+			break;
+		}
+		case 6: {
+			int pos;
+			bool isFound = false;
+			cout << "Enter the position of animal to edit:" << endl;
+			cin >> pos;
+			int i = 0;
+			for (auto ptr = animals.begin(); ptr != animals.end(); ptr++)
+			{
+				i++;
+				if (i == pos) {
+					(*ptr)->Init();
+				}
+				isFound = true;
+			}
+			if (!isFound) {
+				system("cls");
+				cout << "Something went wrong..." << endl;
+				system("pause");
+			}
+			break;
+		}
 		case 0:
 			break;
 		
@@ -59,20 +111,20 @@ int main()
 			break;
 		}
 	}
-	
-	
-
+	return 0;
 }
 
 void PrintMenu()
 {
 	cout << "############### Animal Simulator! TM ###############" << endl;
 	cout << "1 - Add an animal!" << endl;
-	cout << "2 - Delete all the animals!" << endl;
+	cout << "2 - Delete the animals!" << endl;
 	cout << "3 - Show the animals!" << endl;
+	cout << "4 - Search!" << endl;
+	cout << "5 - Insert in the position!" << endl;
+	cout << "6 - Edit an animal!" << endl;
 	cout << "0 - Exit" << endl;
 	cout << "-: ";
-
 }
 
 Animal* CreateAnimal()

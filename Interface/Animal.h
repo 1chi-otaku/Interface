@@ -40,6 +40,12 @@ public:
 		cin >> str_cont;
 		continent = str_cont;
 	}
+	virtual string GetName()const {
+		return name;
+	}
+	virtual string GetContinent()const {
+		return continent;
+	}
 };
 
 class Elephant: public Animal // наследование 
